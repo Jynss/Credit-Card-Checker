@@ -26,8 +26,9 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
 function validateCred(arr) {
     let valdArray = []
-    valdArray.push(arr.pop())
-    let reverseArray = arr.reverse()
+    valdArray.push(arr[-1])
+    let tempArr = arr.slice(0, -1)
+    let reverseArray = tempArr.reverse()
 
     for (i =0; i< reverseArray.length; i++ ) {
         if ( i % 2 != 0){
@@ -49,4 +50,19 @@ function validateCred(arr) {
     
 }
 
+const findInvalidCards = arrs => {
+    let invlaidCards = []
+    let indicies = []
+    for (i =0; i < arrs.length; i++){
+        let arr =  arrs[i]
+        console.log(arr)
+ 
+    }
+    console.log(indicies)
+}
+
+console.log(valid1)
 console.log(validateCred(valid1))
+console.log(valid1)
+//findInvalidCards(batch)
+
