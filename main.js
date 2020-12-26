@@ -26,22 +26,26 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
 function validateCred(arr) {
     let valdArray = []
-    valdArray.push(arr[-1])
+    valdArray.push(arr[arr.length - 1])
     let tempArr = arr.slice(0, -1)
     let reverseArray = tempArr.reverse()
 
     for (i =0; i< reverseArray.length; i++ ) {
-        if ( i % 2 != 0){
+        if ( i % 2 == 0){
             if (reverseArray[i]*2 > 9){
                 let numToAdd = (reverseArray[i] *2) -9
                 valdArray.push(numToAdd)
             }
-            valdArray.push(reverseArray[i] *2)
+            else if (reverseArray[i]*2 <= 9){
+            valdArray.push(reverseArray[i] *2)}
         }
-    }   
+        else if ( i % 2 != 0){
+        valdArray.push(reverseArray[i])}
+        
+    }   console.log(valdArray)
 
     const sum = valdArray.reduce(reducer)
-    //console.log(`sum  = ${sum}`)
+    console.log(`sum  = ${sum}`)
     if (sum % 10 === 0){
         return true
     } else{
@@ -50,19 +54,20 @@ function validateCred(arr) {
     
 }
 
+
 const findInvalidCards = arrs => {
     let invlaidCards = []
     let indicies = []
-    for (i =0; i < arrs.length; i++){
-        let arr =  arrs[i]
-        console.log(arr)
- 
-    }
+    arrs.forEach(validateCred)
+   /* for (i =0; i < arrs.length; i++){
+       console.log(i)
+       let newArr = arrs[i]
+       console.log(validateCred(newArr))
+    }*/
     console.log(indicies)
 }
 
-console.log(valid1)
+
 console.log(validateCred(valid1))
-console.log(valid1)
 //findInvalidCards(batch)
 
