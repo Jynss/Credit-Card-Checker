@@ -23,3 +23,30 @@ const mystery5 = [4, 9, 1, 3, 5, 4, 0, 4, 6, 3, 0, 7, 2, 5, 2, 3];
 const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, invalid3, invalid4, invalid5, mystery1, mystery2, mystery3, mystery4, mystery5];
 
 //Checks to see if card is valid based on Luhn algorithm 
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+function validateCred(arr) {
+    let valdArray = []
+    valdArray.push(arr.pop())
+    let reverseArray = arr.reverse()
+
+    for (i =0; i< reverseArray.length; i++ ) {
+        if ( i % 2 != 0){
+            if (reverseArray[i]*2 > 9){
+                let numToAdd = (reverseArray[i] *2) -9
+                valdArray.push(numToAdd)
+            }
+            valdArray.push(reverseArray[i] *2)
+        }
+    }   
+
+    const sum = valdArray.reduce(reducer)
+    //console.log(`sum  = ${sum}`)
+    if (sum % 10 === 0){
+        return true
+    } else{
+        return false
+    }
+    
+}
+
+console.log(validateCred(valid1))
