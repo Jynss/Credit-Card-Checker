@@ -39,13 +39,13 @@ function validateCred(arr) {
             else if (reverseArray[i]*2 <= 9){
             valdArray.push(reverseArray[i] *2)}
         }
-        else if ( i % 2 != 0){
+        else {
         valdArray.push(reverseArray[i])}
         
-    }   console.log(valdArray)
+    }   //console.log(valdArray)
 
     const sum = valdArray.reduce(reducer)
-    console.log(`sum  = ${sum}`)
+    //console.log(`sum  = ${sum}`)
     if (sum % 10 === 0){
         return true
     } else{
@@ -56,18 +56,15 @@ function validateCred(arr) {
 
 
 const findInvalidCards = arrs => {
-    let invlaidCards = []
+    let invlaidCards = arrs.filter(Element => validateCred(Element) === false)
     let indicies = []
-    arrs.forEach(validateCred)
-   /* for (i =0; i < arrs.length; i++){
-       console.log(i)
-       let newArr = arrs[i]
-       console.log(validateCred(newArr))
-    }*/
+    arrs.filter(validateCred)
     console.log(indicies)
+
+    return invlaidCards
 }
 
 
 console.log(validateCred(valid1))
-//findInvalidCards(batch)
+console.log(findInvalidCards(batch))
 
