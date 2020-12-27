@@ -57,14 +57,33 @@ function validateCred(arr) {
 
 const findInvalidCards = arrs => {
     let invlaidCards = arrs.filter(Element => validateCred(Element) === false)
-    let indicies = []
     arrs.filter(validateCred)
-    console.log(indicies)
 
     return invlaidCards
 }
 
+function idInvalidCardCompanies(arrs){
+    let invaildCardsList = findInvalidCards(arrs)
+    let invalidComapnies = []
+    for (i = 0 ; i < invaildCardsList.length; i++){
+        let currentArr = arrs[i]
+        if (currentArr[0] === 3 && !invalidComapnies.includes('Amex (Americal Express)')){
+            invalidComapnies.push('Amex (Americal Express)')
+        } else if (currentArr[0] === 4 && !invalidComapnies.includes('Visa')){
+            invalidComapnies.push('Visa')
+        } else if (currentArr[0] === 5 && !invalidComapnies.includes('Mastercard')){
+            invalidComapnies.push('Mastercard')
+        } else if (currentArr[0] === 6 && !invalidComapnies.includes('Discover')){
+            invalidComapnies.push('Discover')
+        }
+    }
+    //console.log('invalid companies' , invalidComapnies)
 
-console.log(validateCred(valid1))
-console.log(findInvalidCards(batch))
+    return invalidComapnies
+}
+
+
+//console.log(validateCred(valid1))
+//console.log(findInvalidCards(batch))
+console.log(idInvalidCardCompanies(batch))
 
